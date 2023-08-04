@@ -308,7 +308,6 @@ func main() {
 	}
 	conn, err := net.DialTimeout("tcp", uri.Host, options.ConnectTimeout)
 	if err != nil {
-		conn.Close()
 		errorExit(fmt.Errorf("dial proxy fail: %v", err))
 	}
 	if err := tu.Connect(conn, options.Dest, uri.User); err != nil {
