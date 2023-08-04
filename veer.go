@@ -28,15 +28,15 @@ var options struct {
 	ConnectTimeout time.Duration
 }
 
-const version = "0.1.0"
+const version = "0.1.1"
 
 func init() {
 	flag.Usage = func() {
 		output := flag.CommandLine.Output()
 		fmt.Fprintf(output, "veer %s, a tool for tunneling SSH through proxies.\n", version)
 		fmt.Fprintf(output, "Basic usages:\n")
-		fmt.Fprintf(output, "tunnel through http proxy:  veer -p http://127.0.0.1:1090 -d %%h:%%p\n")
-		fmt.Fprintf(output, "tunnel through socks5 proxy: veer -p socks://127.0.0.1:1090 -d %%h:%%p\n")
+		fmt.Fprintf(output, "tunnel through http proxy:   veer -p http://127.0.0.1:1090 -d %%h:%%p\n")
+		fmt.Fprintf(output, "tunnel through socks5 proxy: veer -p socks://127.0.0.1:1080 -d %%h:%%p\n")
 		fmt.Fprintf(output, "\nOptions:\n")
 		flag.VisitAll(func(f *flag.Flag) {
 			var dft string

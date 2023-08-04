@@ -1,9 +1,16 @@
 #!/bin/bash
 
+set -e
+
 ARCH='amd64'
 
 NAME=veer
 
-GOOS="linux" GOARCH=$ARCH go build -o $NAME-linux-$ARCH
-GOOS="darwin" GOARCH=$ARCH go build -o $NAME-darwin-$ARCH
-GOOS="windows" GOARCH=$ARCH go build -o $NAME-windows-$ARCH.exe
+for os in linux darwin windows; do
+    name="$NAME-$os-$ARCH"
+    if [ "$os" == "windows" ]; then
+        name="$name.exe"
+    fi
+    GOOS=$os GOARCH=$ARCH go build -o "$name"
+    sha256sum "$name" >"$name.sha256"
+done
